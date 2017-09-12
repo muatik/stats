@@ -9,4 +9,6 @@ import com.muatik.entity.Summary;
 public interface StatsService {
     void add(Stat stat) throws StatsServiceBean.StatAlreadyExpired;
     Summary getSummary();
+
+    void clear();
 }

@@ -6,7 +6,6 @@ import com.muatik.service.StatsService;
 import com.muatik.service.StatsServiceBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 /**

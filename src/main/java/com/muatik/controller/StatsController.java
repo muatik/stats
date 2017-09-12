@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
  * Created by muatik on 9/12/17.
  */
 @RestController
-@RequestMapping("/stats")
 public class StatsController {
 
     private StatsService statsService;
@@ -21,12 +20,12 @@ public class StatsController {
         this.statsService = statsService;
     }
 
-    @GetMapping
+    @GetMapping("/statistics")
     public Summary get() {
         return statsService.getSummary();
     }
 
-    @PostMapping
+    @PostMapping("/transactions")
     public ResponseEntity add(@RequestBody Stat stat) {
         try {
             statsService.add(stat);

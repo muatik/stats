@@ -78,7 +78,7 @@ public class StatsServiceBean implements StatsService{
                     summary.getSum() + stat.getAmount(),
                     (summary.getSum() + stat.getAmount()) / (summary.getCount() + 1),
                     (summary.getMin() != null ? Math.min(summary.getMin(), stat.getAmount()) : stat.getAmount()),
-                    (summary.getMax() != null ? Math.min(summary.getMax(), stat.getAmount()) : stat.getAmount()));
+                    (summary.getMax() != null ? Math.max(summary.getMax(), stat.getAmount()) : stat.getAmount()));
         } else if (operation.equals(StatOperation.REMOVE)) {
             summary = new Summary(
                     summary.getCount() - 1,

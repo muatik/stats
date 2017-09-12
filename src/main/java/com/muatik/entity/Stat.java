@@ -4,8 +4,10 @@ package com.muatik.entity;
  * Created by muatik on 9/12/17.
  */
 public class Stat implements Comparable<Stat> {
-    private final double amount;
-    private final long timestamp;
+    private double amount;
+    private long timestamp;
+
+    public Stat() {}
 
     public Stat(double amount, long timestamp) {
         this.amount = amount;

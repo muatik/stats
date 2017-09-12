@@ -29,9 +29,9 @@ public class StatsServiceBean implements StatsService{
     private volatile Summary summary;
 
     /**
-     * after how many seconds stats will be expired
+     * after how many milliseconds stats will be expired
      */
-    private long expireMilis = 60;
+    private long expireMilis = 60 * 1000;
 
     /**
      * used to update stats collection and summary in thread safe manner
@@ -76,12 +76,16 @@ public class StatsServiceBean implements StatsService{
             summary = new Summary(
                     summary.getCount() + 1,
                     summary.getSum() + stat.getAmount(),
-                    (summary.getSum() + stat.getAmount()) / (summary.getCount() + 1));
+                    (summary.getSum() + stat.getAmount()) / (summary.getCount() + 1),
+                    (summary.getMin() != null ? Math.min(summary.getMin(), stat.getAmount()) : stat.getAmount()),
+                    (summary.getMax() != null ? Math.min(summary.getMax(), stat.getAmount()) : stat.getAmount()));
         } else if (operation.equals(StatOperation.REMOVE)) {
             summary = new Summary(
                     summary.getCount() - 1,
                     summary.getSum() - stat.getAmount(),
-                    (summary.getSum() - stat.getAmount()) / (summary.getCount() -1));
+                    (summary.getCount() == 1 ? 0 : (summary.getSum() - stat.getAmount()) / (summary.getCount() -1) ),
+                    summary.getMin(), summary.getMax()
+            );
         }
     }
 
@@ -116,7 +120,7 @@ public class StatsServiceBean implements StatsService{
      * @return true if expired
      */
     private boolean isExpired(Stat stat) {
-        return stat.getTimestamp() < (System.currentTimeMillis() / 1000 - expireMilis);
+        return stat.getTimestamp() < (System.currentTimeMillis() - expireMilis);
     }
 
 

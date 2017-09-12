@@ -18,7 +18,7 @@ public class SummaryTest {
         double sum = 1002;
         double avg = 50.1;
 
-        Summary stat = new Summary(count, sum, avg);
+        Summary stat = new Summary(count, sum, avg, 50.1, 50.1);
         Assert.assertEquals(avg, stat.getAvg(), 0);
         Assert.assertEquals(count, stat.getCount(), 0);
         Assert.assertEquals(sum, stat.getSum(), 0);
@@ -30,9 +30,9 @@ public class SummaryTest {
         double sum = 1002;
         double avg = 50.1;
 
-        Summary stat = new Summary(count, sum, avg);
+        Summary stat = new Summary(count, sum, avg, 50.1, 50.1);
         Assert.assertEquals(
-                "Summary{count=20, sum=1002.0, avg=50.1}",
+                "Summary{count=20, sum=1002.0, avg=50.1, min=50.1, max=50.1}",
                 stat.toString());
     }
 

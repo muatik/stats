@@ -11,7 +11,7 @@ The other one returns the statistic based of the transactions of the last 60 sec
 
 ## REST APIs
 
-#### Create a new author
+#### Send a new statistic
 ##### Request
 ```http
 POST /transactions HTTP/1.1
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ```
 
-#### Get authors list
+#### Get stats list
 Request
 ```http
 GET /statistics HTTP/1.1

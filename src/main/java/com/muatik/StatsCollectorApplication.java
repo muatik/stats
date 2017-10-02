@@ -10,15 +10,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 @SpringBootApplication
 @EnableScheduling
 public class StatsCollectorApplication {
-    public static void main(String[] args) {
-		SpringApplication.run(StatsCollectorApplication.class, args);
-	}
 
-	@Autowired
+    public static void main(String[] args) {
+        SpringApplication.run(StatsCollectorApplication.class, args);
+    }
+
+    @Autowired
     StatsService statsService;
 
-	@Scheduled(fixedDelay = 200)
-	public void clearExpiredStats() {
+    @Scheduled(fixedDelay = 200)
+    public void clearExpiredStats() {
         statsService.clear();
     }
 
